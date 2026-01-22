@@ -205,48 +205,75 @@ with col_left:
                 st.exception(e)
 
 
+# def download_video(url, download_type, quality):
+#     os.makedirs("downloads", exist_ok=True)
+
+#     output_template = "downloads/%(title)s.%(ext)s"
+
+#     if download_type == "🎵 Audio Only":
+#         ydl_opts = {
+#             'format': 'bestaudio/best',
+#             'outtmpl': output_template,
+#             'postprocessors': [{
+#                 'key': 'FFmpegExtractAudio',
+#                 'preferredcodec': 'mp3',
+#                 'preferredquality': str(quality),
+#             }],
+#         }
+
+#     elif download_type == "🎬 Video + Audio":
+#         if quality == "Best":
+#             fmt = "bestvideo+bestaudio/best"
+#         else:
+#             height = quality.replace("p", "")
+#             fmt = f"bestvideo[height<={height}]+bestaudio/best"
+
+#         ydl_opts = {
+#             'format': fmt,
+#             'outtmpl': output_template,
+#             'merge_output_format': 'mp4',
+#         }
+
+#     else:
+#         ydl_opts = {
+#             'format': 'best',
+#             'outtmpl': output_template,
+#         }
+
+#     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+#         info = ydl.extract_info(url, download=True)
+#         filename = ydl.prepare_filename(info)
+
+#         # If audio-only, extension changes to .mp3
+#         if download_type == "🎵 Audio Only":
+#             filename = filename.rsplit(".", 1)[0] + ".mp3"
+
+#     return filename
 def download_video(url, download_type, quality):
     os.makedirs("downloads", exist_ok=True)
-
-    output_template = "downloads/%(title)s.%(ext)s"
+    output = "downloads/%(title)s.%(ext)s"
 
     if download_type == "🎵 Audio Only":
         ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': output_template,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': str(quality),
-            }],
+            "format": "bestaudio",
+            "outtmpl": output,
         }
 
     elif download_type == "🎬 Video + Audio":
-        if quality == "Best":
-            fmt = "bestvideo+bestaudio/best"
-        else:
-            height = quality.replace("p", "")
-            fmt = f"bestvideo[height<={height}]+bestaudio/best"
-
         ydl_opts = {
-            'format': fmt,
-            'outtmpl': output_template,
-            'merge_output_format': 'mp4',
+            "format": "best[ext=mp4]/best",
+            "outtmpl": output,
         }
 
     else:
         ydl_opts = {
-            'format': 'best',
-            'outtmpl': output_template,
+            "format": "best",
+            "outtmpl": output,
         }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=True)
         filename = ydl.prepare_filename(info)
-
-        # If audio-only, extension changes to .mp3
-        if download_type == "🎵 Audio Only":
-            filename = filename.rsplit(".", 1)[0] + ".mp3"
 
     return filename
 
@@ -346,3 +373,4 @@ with col_right:
             except Exception as e:
                 st.error("❌ Download failed")
                 st.exception(e)
+
