@@ -1,11 +1,12 @@
 
-# ▶️ YouTube Video Downloader
+
+# 📥 YouTube Video Downloader
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-blue?logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" />
-  <img src="https://img.shields.io/badge/Utility-Downloader-success" />
-  <img src="https://img.shields.io/badge/Project-YouTube-orange" />
+  <img src="https://img.shields.io/badge/Application-Downloader-success" />
+  <img src="https://img.shields.io/badge/Project-Media%20Utility-orange" />
 </p>
 
 <p align="center">
@@ -19,7 +20,7 @@
 ## 🌐 Live Application
 
 🚀 **Deployed App**
-👉 [https://credit-system.streamlit.app/](https://credit-system.streamlit.app/)
+👉 [https://bytebucket.streamlit.app/](https://bytebucket.streamlit.app/)
 
 📁 **GitHub Repository**
 👉 [https://github.com/Sahilkumar8084/Youtube-Video-Downloader.git](https://github.com/Sahilkumar8084/Youtube-Video-Downloader.git)
@@ -28,59 +29,65 @@
 
 ## 🧠 Introduction
 
-The **YouTube Video Downloader** is a **Python-based Streamlit web application** that allows users to **download YouTube videos** quickly and easily by providing a video URL.
+The **YouTube Video Downloader** is a **Python-based Streamlit web application** that allows users to download YouTube videos quickly and easily by simply providing the video URL.
 
 This project demonstrates:
 
-* API/library integration
-* File handling
-* Streamlit UI development
-* End-to-end deployment of a utility application
+* Practical Python usage
+* Integration of third-party libraries
+* Streamlit-based UI development
+* Deployment of a real-world utility app
 
 ---
 
 ## 📌 Project Overview
 
-Downloading videos is useful for:
+Downloading videos can be useful for:
 
-* 📥 Offline viewing
-* 📚 Educational content saving
-* 🎥 Content analysis & editing
+* 📚 Offline learning
+* 🎧 Personal media storage
+* 🧪 Educational demonstrations
 
-This application provides a **simple web interface** to download videos without using third-party websites.
+This application provides a **simple, browser-based interface** for downloading YouTube videos without using command-line tools.
 
 ---
 
 ## 🎯 Objective
 
-To build a **user-friendly video downloader** that:
+To build a **user-friendly, web-based video downloader** that:
 
 * Accepts a YouTube video URL
 * Fetches video metadata
-* Downloads the video in available quality
-* Provides instant feedback to the user
+* Allows users to download the video
+* Runs fully in the browser via Streamlit
 
 ---
 
-## 🛠️ Tech Stack
+## 🧠 Application Logic
 
-| Technology                   | Purpose                   |
-| ---------------------------- | ------------------------- |
-| 🐍 **Python**                | Core programming language |
-| 🖥️ **Streamlit**            | Web interface             |
-| ▶️ **YouTube API / Library** | Video fetching & download |
-| 📂 **OS / File Handling**    | Saving downloaded files   |
+### 🔹 Core Functionality
+
+* URL validation
+* Video stream extraction
+* Download handling
+* Error handling for invalid links
+
+### 🔹 Libraries Used
+
+* `pytube` (or similar) for video downloading
+* `streamlit` for UI
+* `os` / `io` for file handling
 
 ---
 
 ## ✨ Features
 
-* ▶️ Download YouTube videos via URL
+* 📥 Download YouTube videos via URL
 * ⚡ Fast and lightweight
 * 🖥️ Clean Streamlit interface
-* 📥 Local file download support
+* 🌐 Fully web-based
 * 🎯 Beginner-friendly project
-* 🌐 Cloud deployed
+* ☁️ Deployed and accessible online
 
 ---
 
@@ -88,10 +95,11 @@ To build a **user-friendly video downloader** that:
 
 ### UI Highlights
 
-* URL input field
+* Text input for YouTube URL
 * Download button
-* Status messages (success / error)
-* Clean and responsive layout
+* Video title display
+* Success / error messages
+* Simple and responsive layout
 
 ---
 
@@ -100,10 +108,10 @@ To build a **user-friendly video downloader** that:
 ```text
 Youtube-Video-Downloader/
 │
-├── app.py                  # Streamlit application
-├── requirements.txt        # Dependencies
-├── README.md               # Documentation
-└── venv/                   # Virtual environment
+├── app.py                 # Streamlit application
+├── requirements.txt       # Project dependencies
+├── README.md              # Documentation
+└── venv/                  # Virtual environment (optional)
 ```
 
 ---
@@ -139,10 +147,11 @@ http://localhost:8501
 
 ## 📦 Requirements
 
-Main libraries used:
+Key libraries used:
 
 * `streamlit`
-* `pytube` *(or similar YouTube library)*
+* `pytube`
+* `python-dotenv` (if applicable)
 * `os`
 
 ---
@@ -150,34 +159,38 @@ Main libraries used:
 ## 🧪 Application Flow
 
 ```text
-User enters YouTube URL
-        ↓
-Video Metadata Fetch
-        ↓
-Download Process
-        ↓
-Video Saved Locally
+User Enters YouTube URL
+   ↓
+Validate URL
+   ↓
+Fetch Video Stream
+   ↓
+Download Video
+   ↓
+Save to Local System
 ```
 
 ---
 
 ## 🚀 Future Improvements
 
-* 🎥 Video quality selection
-* 🎵 Audio-only download (MP3)
-* 📂 Download history
-* 📊 Progress bar
-* 🚫 Error handling for private videos
-* ☁️ Separate dedicated deployment
+* Select video resolution
+* Audio-only downloads
+* Download progress bar
+* Playlist downloads
+* Cloud storage support
+* Better error handling
 
 ---
 
 ## 🏆 Learning Outcomes
 
-* Streamlit app development
-* Working with external libraries
+Through this project, I gained experience in:
+
+* Building real-world utility apps
+* Using third-party Python libraries
+* Streamlit UI development
 * Handling file downloads
-* Building utility-based Python projects
 * Deploying Streamlit apps
 
 ---
@@ -192,9 +205,8 @@ India 🇮🇳
 
 ## 📜 License
 
-This project is intended for **educational and learning purposes** only.
+This project is intended for **educational purposes only**.
 
 ---
 
-⭐ **Simple, useful & internship-ready project!**
-
+⭐ **Live, deployed & portfolio-ready project!**
