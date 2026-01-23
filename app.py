@@ -542,13 +542,32 @@ def download_video(url, dtype, quality):
 
 
 # ---------------- DOWNLOAD UI ----------------
-mime = "video/mp4" if path.endswith(".mp4") else "audio/webm"
+mime = with col_right:
+    st.markdown("### ⬇️ Download")
 
-with open(path, "rb") as f:
-    st.download_button(
-        "📥 Download File",
-        f.read(),
-        file_name=os.path.basename(path),
-        mime=mime,
-        use_container_width=True
-    )
+    if st.button("🚀 DOWNLOAD NOW", type="primary", use_container_width=True):
+        if not youtube_url:
+            st.error("Enter a URL first")
+        else:
+            try:
+                with st.spinner("Downloading..."):
+                    path = download_video(youtube_url, download_type, quality)
+
+                mime = "video/mp4" if path.endswith(".mp4") else "audio/webm"
+
+                with open(path, "rb") as f:
+                    st.download_button(
+                        "📥 Download File",
+                        f.read(),
+                        file_name=os.path.basename(path),
+                        mime=mime,
+                        use_container_width=True
+                    )
+
+                st.success("✅ Download complete!")
+
+            except Exception as e:
+                st.error("❌ Download failed")
+                st.exception(e)
+
+
