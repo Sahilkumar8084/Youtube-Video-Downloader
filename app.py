@@ -508,59 +508,47 @@ def download_video(url, dtype, quality):
     os.makedirs("downloads", exist_ok=True)
     outtmpl = "downloads/%(title)s.%(ext)s"
 
+    # ✅ STREAMLIT-CLOUD SAFE OPTIONS
     if dtype == "🎵 Audio Only":
+        # Download best available audio file AS-IS (no mp3 conversion)
         opts = {
-            "format": "bestaudio/best",
+            "format": "bestaudio",
             "outtmpl": outtmpl,
-            "postprocessors": [{
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": str(quality)
-            }]
         }
 
     elif dtype == "🎬 Video + Audio":
-        fmt = "bestvideo+bestaudio/best" if quality == "Best" else f"bestvideo[height<={quality[:-1]}]+bestaudio/best"
+        if quality == "Best":
+            fmt = "best[ext=mp4]/best"
+        else:
+            height = quality[:-1]  # "720p" -> "720"
+            fmt = f"best[height<={height}][ext=mp4]/best"
+
         opts = {
             "format": fmt,
-            "merge_output_format": "mp4",
-            "outtmpl": outtmpl
+            "outtmpl": outtmpl,
         }
 
     else:
-        opts = {"format": "best", "outtmpl": outtmpl}
+        opts = {
+            "format": "best",
+            "outtmpl": outtmpl,
+        }
 
     with yt_dlp.YoutubeDL(opts) as ydl:
         info = ydl.extract_info(url, download=True)
         filename = ydl.prepare_filename(info)
 
-    if dtype == "🎵 Audio Only":
-        filename = filename.rsplit(".", 1)[0] + ".mp3"
-
     return filename
 
+
 # ---------------- DOWNLOAD UI ----------------
-with col_right:
-    st.markdown("### ⬇️ Download")
+mime = "video/mp4" if path.endswith(".mp4") else "audio/webm"
 
-    if st.button("🚀 DOWNLOAD NOW", type="primary", use_container_width=True):
-        if not youtube_url:
-            st.error("Enter a URL first")
-        else:
-            try:
-                with st.spinner("Downloading..."):
-                    path = download_video(youtube_url, download_type, quality)
-
-                with open(path, "rb") as f:
-                    st.download_button(
-                        "📥 Download File",
-                        f.read(),
-                        file_name=os.path.basename(path),
-                        use_container_width=True
-                    )
-                st.success("Download complete!")
-
-            except Exception as e:
-                st.error("Download failed")
-                st.exception(e)
-
+with open(path, "rb") as f:
+    st.download_button(
+        "📥 Download File",
+        f.read(),
+        file_name=os.path.basename(path),
+        mime=mime,
+        use_container_width=True
+    )
