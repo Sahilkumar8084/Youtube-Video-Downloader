@@ -542,7 +542,7 @@ def download_video(url, dtype, quality):
 
 
 # ---------------- DOWNLOAD UI ----------------
-mime = with col_right:
+with col_right:
     st.markdown("### ⬇️ Download")
 
     if st.button("🚀 DOWNLOAD NOW", type="primary", use_container_width=True):
@@ -569,5 +569,6 @@ mime = with col_right:
             except Exception as e:
                 st.error("❌ Download failed")
                 st.exception(e)
+
 
 
